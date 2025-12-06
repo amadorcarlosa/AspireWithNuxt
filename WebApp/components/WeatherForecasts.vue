@@ -5,10 +5,18 @@ interface WeatherForecast {
   temperatureF: number;
   summary: string;
 }
-const { data: weatherForecasts } = await useFetch<WeatherForecast[]>('/api/weatherforecast');
+
+const { data: weatherForecasts, error, status } = await useFetch<WeatherForecast[]>('/api/weatherforecast');
+
+console.log('Status:', status.value);
+console.log('Data:', weatherForecasts.value);
+console.log('Error:', error.value);
 </script>
+
 <template>
   <div>
+    <p>Status: {{ status }}</p>
+    <p v-if="error" style="color: red;">Error: {{ error.message }}</p>
     <div v-if="weatherForecasts">
       <table>
         <thead>
@@ -29,5 +37,6 @@ const { data: weatherForecasts } = await useFetch<WeatherForecast[]>('/api/weath
         </tbody>
       </table>
     </div>
+    <p v-else>No data loaded</p>
   </div>
 </template>
