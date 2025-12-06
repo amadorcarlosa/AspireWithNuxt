@@ -31,4 +31,3 @@ const { data: weatherForecasts } = await useFetch<WeatherForecast[]>('/api/weath
     </div>
   </div>
 </template>
-
