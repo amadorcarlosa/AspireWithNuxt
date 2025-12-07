@@ -5,11 +5,10 @@ var webApi = builder.AddProject<Projects.WebApi>("WebApi");
 
 
 
-
 var webApp = builder.AddJavaScriptApp("WebApp", "../WebApp")
     .WithPnpm()
     .WithRunScript("dev")
-    .WithHttpEndpoint(port: 4000)
+    .WithHttpEndpoint(port: 4000, isProxied: false)
     .WithExternalHttpEndpoints()
     .WithReference(webApi)
     .WaitFor(webApi)
